@@ -59,7 +59,7 @@
             // buttonDatosPropietario
             // 
             this.buttonDatosPropietario.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.buttonDatosPropietario.Location = new System.Drawing.Point(269, 129);
+            this.buttonDatosPropietario.Location = new System.Drawing.Point(273, 106);
             this.buttonDatosPropietario.Name = "buttonDatosPropietario";
             this.buttonDatosPropietario.Size = new System.Drawing.Size(117, 52);
             this.buttonDatosPropietario.TabIndex = 2;

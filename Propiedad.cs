@@ -9,7 +9,7 @@ namespace PagoCondominios
         public Propiedad()
         {
             InitializeComponent();
-            CargarPropietarios(); // Llama al método para cargar los propietarios en el ComboBox
+            CargarPropietarios(); 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace PagoCondominios
                 string[] datos = linea.Split(',');
                 if (datos.Length > 0)
                 {
-                    comboBoxDPI.Items.Add(datos[0]); // Agrega el DPI al ComboBox
+                    comboBoxDPI.Items.Add(datos[0]); 
                 }
             }
         }
