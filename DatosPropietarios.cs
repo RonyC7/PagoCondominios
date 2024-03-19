@@ -19,19 +19,18 @@ namespace PagoCondominios
             this.Hide();
         }
 
+        private void buttonMDatos_Click(object sender, EventArgs e)
+        {
+            MostrarTodosDatos();
+        }
         private void dataGridViewDatosGenerales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void buttonMDatos_Click(object sender, EventArgs e)
-        {
-            MostrarTodosDatos();
-        }
-
         private void CargarDatos()
         {
-
+            
         }
 
         private void MostrarTodosDatos()
@@ -50,7 +49,7 @@ namespace PagoCondominios
                         string apellido = datosPropietario[2];
                         string dpi = datosPropietario[0];
                         string numeroCasa = ObtenerNumeroCasa(dpi);
-                        string cuotaMantenimiento = ObtenerCuotaMantenimiento(numeroCasa);
+                        decimal cuotaMantenimiento = ObtenerCuotaMantenimiento(numeroCasa);
 
                         dataGridViewDatosGenerales.Rows.Add(nombre, apellido, numeroCasa, cuotaMantenimiento);
                     }
@@ -79,7 +78,7 @@ namespace PagoCondominios
             return "Número de Casa no encontrado";
         }
 
-        private string ObtenerCuotaMantenimiento(string numeroCasa)
+        private decimal ObtenerCuotaMantenimiento(string numeroCasa)
         {
             if (File.Exists("Propiedades.txt"))
             {
@@ -89,16 +88,24 @@ namespace PagoCondominios
                     string[] datosPropiedad = linea.Split(',');
                     if (datosPropiedad.Length >= 4 && datosPropiedad[0] == numeroCasa)
                     {
-                        return datosPropiedad[3]; // Retorna la cuota de mantenimiento
+                        if (decimal.TryParse(datosPropiedad[3], out decimal cuotaMantenimiento))
+                        {
+                            return cuotaMantenimiento; 
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error: La cuota de mantenimiento no es un número válido.");
+                            return 0; 
+                        }
                     }
                 }
             }
-            return "Cuota de Mantenimiento no encontrada";
+            return 0; 
         }
 
         private void DatosPropietarios_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void buttonOrden_Click(object sender, EventArgs e)
